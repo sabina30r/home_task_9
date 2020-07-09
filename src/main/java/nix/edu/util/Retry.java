@@ -13,11 +13,11 @@ public class Retry<T extends Block> {
                 block.run();
                 Thread.sleep(PAUSE * attempt);
             } catch (Exception e) {
-                if (attempt == numberOfTries) {
-                    throw e;
-                }
                 System.out.println("Exception from interface implementation was caught. Message: " + e.getMessage());
                 Thread.sleep(PAUSE * attempt);
+                if (attempt == numberOfTries - 1) {
+                    throw e;
+                }
             }
         }
     }
