@@ -5,11 +5,17 @@ import nix.edu.util.Retry;
 
 public class Main {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
 
         BlockImpl block = new BlockImpl();
         Retry retryClass = new Retry<BlockImpl>();
-        retryClass.retry(block, 10);
+        try {
+            retryClass.retry(block, 10);
+        } catch (Exception e) {
+            System.out.println("Attempts are over. Exception was caught in Main class");
+            e.printStackTrace();
+        }
     }
 
 }
+
